@@ -1,0 +1,25 @@
+services:
+  # Web Service
+  - type: web
+    name: uzbek-project-manager
+    runtime: node
+    env: node
+    region: oregon
+    plan: free
+    # Root Directory - package.json nima papkada
+    rootDir: .
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18.0.0
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: TELEGRAM_TOKEN
+        sync: false
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health
+    autoDeploy: true
